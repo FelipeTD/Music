@@ -1,0 +1,53 @@
+<form #frm="ngForm" (ngSubmit)="create(frm)">
+    <div class="ui-g">
+  
+        <div class="ui-g-12">
+          <h1>Usuários do Sistema</h1>
+        </div>
+  
+        <div class="ui-g-6 ui-fluid">
+          <label>Nome</label>
+          <input pInputText name="nome" ngModel [required]="true">
+        </div>
+  
+        <div class="ui-g-6 ui-fluid">
+            <label>Data de nascimento</label>
+            <p-calendar name="dataNascimento" dateFormat="dd/mm/yy" 
+            ngModel [required]="true"></p-calendar>
+        </div>
+  
+        <div class="ui-g-6 ui-fluid">
+            <label>Sexo</label>
+            <p-inputMask name="sexo" mask="a" ngModel [required]="true"></p-inputMask>
+        </div>
+
+        <div class="ui-g-6 ui-fluid">
+          <label>Usuário</label>
+          <input pInputText name="usuario" ngModel [required]="true">
+        </div>
+  
+        <div class="ui-g-12">
+          <button pButton type="submit" label="Adicionar"
+          [disabled]="frm.invalid"></button>
+        </div>
+    </div>
+</form>
+
+<div class="ui-g">
+  
+	<div class="ui-g-12">
+
+		<p-dataTable [value]="usuarios">
+    <p-column field="nome" header="Nome"></p-column>
+    <p-column header="Data nascimento">
+      <ng-template pTemplate="body" let-item="rowData">
+        {{ item.dataNascimento | date:'dd/MM/yyyy'}}
+      </ng-template>
+    </p-column>
+    <p-column field="sexo" header="Sexo"></p-column>
+    <p-column field="usuario" header="Usuário"></p-column>   
+	</p-dataTable>
+  
+	</div>
+	
+</div>
